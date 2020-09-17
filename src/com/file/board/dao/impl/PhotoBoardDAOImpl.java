@@ -32,7 +32,7 @@ public class PhotoBoardDAOImpl implements PhotoBoardDAO {
 	@Override
 	public int selectPhotoBoardCount(PhotoBoardVO pb) {
 		try(SqlSession ss = ssf.openSession()){
-			return ss.selectOnt("select")
+			return ss.selectList("", pb);
 		}
 	}
 
