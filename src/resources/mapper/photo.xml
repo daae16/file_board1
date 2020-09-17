@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="photo">
+  <sql id="photoBoardCol">
+  pb_num,pb_title,pb_content,pb_photo_name,pb_photo_path,credat,cretim
+  </sql>
+  
+  <select id="selectPhotoList" resultType="pb">
+    select <include refid="photoBoardCol"/> from photo_board  
+    </select>
+  
+  
+  
+<insert id="insertPhoto" parameterType="com.file.board.vo.PhotoBoardVO">
+  
+  insert into (<include refid="photoBoardCol"/>)
+values (seq_pb_num.nextval,#{pbTitle},#{pbContect},
+    <if test="pbPhotoName != null">#{pbPhotoName},#{pbPhotoPath},</if>
+    <if test="pbPhotoName ==null">null, null,</if>
+ to_char(sysdate, 'YYYYMMDD'), to_char (sysdate, 'HH24MISS'))
+  </insert>
+ 
+	
+	<select id="selsectPhotoBoardList" resultType="pb" parameterType="pb">
+	select * from (select fownum rcnt, pb.* from
+	(select * ))
+	
+	</select>
+	
+</mapper>
